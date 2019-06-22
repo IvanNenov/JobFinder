@@ -35,7 +35,7 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a asp-controller="Home" asp-action="About" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                     <li class="nav-item cta mr-md-2"><a href="new-post.html" class="nav-link">Post a Job</a></li>
@@ -47,11 +47,9 @@
     </nav>
     <!-- END nav -->
     <partial name="_CookieConsentPartial" />
-    <main role="main" class="pb-3">
-
+    <main role="main">
         @RenderBody()
     </main>
-
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
         <div class="container">
