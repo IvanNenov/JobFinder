@@ -13,7 +13,19 @@ namespace JobFinder.Data
           : base(options)
         {
         }
-
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Company> Companies { get; set; }
+
+        public DbSet<Cv> Cvs { get; set; }
+
+        public DbSet<FormEntry> FormEntries { get; set; }
+
+        public DbSet<JobAdd> JobAdds { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
     }
 }
