@@ -8,9 +8,9 @@ namespace JobFinder.Models
     {
         public JobAdd()
         {
-            this.CandidatesForPosition = new HashSet<User>();
+            this.CandidatesForPosition = new HashSet<UserJobAdds>();
         }
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         public string Description { get; set; }
 
@@ -23,7 +23,7 @@ namespace JobFinder.Models
         public string CompanyId { get; set; }
         public virtual Company Company { get; set; }
 
-        public virtual ICollection<User> CandidatesForPosition { get; set; }
+        public virtual ICollection<UserJobAdds> CandidatesForPosition { get; set; }
 
     }
 }

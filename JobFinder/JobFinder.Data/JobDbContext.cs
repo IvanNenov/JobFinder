@@ -13,6 +13,7 @@ namespace JobFinder.Data
           : base(options)
         {
         }
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<Company> Companies { get; set; }
@@ -25,6 +26,28 @@ namespace JobFinder.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+            builder.Entity<User>(entity =>
+            {
+               entity.HasOne(x => x.Cv).WithOne(x => x.User)
+                   .HasForeignKey<Cv>();
+            });
+           
+            builder.Entity<User>(entity =>
+            {
+                entity.HasMany(x => x.UserJobAdds).WithOne(x => x.User);
+            });
+
+            builder.Entity<JobAdd>(entity =>
+            {
+                entity.HasMany(x => x.CandidatesForPosition).WithOne(x => x.JobAdd);
+            });
+
+            builder.Entity<UserJobAdds>(entity =>
+            {
+                entity.HasKey(x => new {x.JobAddId, x.UserId}); 
+            });
+
             base.OnModelCreating(builder);
         }
     }

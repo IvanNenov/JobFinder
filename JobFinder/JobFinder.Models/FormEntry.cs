@@ -7,7 +7,7 @@ namespace JobFinder.Models
 {
     public class FormEntry
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
        
         public string SenderName { get; set; }
 

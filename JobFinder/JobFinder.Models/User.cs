@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 
@@ -9,14 +10,15 @@ namespace JobFinder.Models
     {
         public User()
         {
-            this.JobAdds = new HashSet<JobAdd>();
+            this.UserJobAdds = new HashSet<UserJobAdds>();
         }
         public int Age { get; set; }
 
         public string FullName { get; set; }
+
         public string CvId { get; set; }
         public virtual Cv Cv { get; set; }
 
-        public virtual ICollection<JobAdd> JobAdds { get; set; }
+        public virtual ICollection<UserJobAdds> UserJobAdds { get; set; }
     }
 }
