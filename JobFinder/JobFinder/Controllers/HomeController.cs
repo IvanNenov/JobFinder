@@ -5,13 +5,31 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using JobFinder.Models;
+using JobFinder.Services.Contracts;
+using JobFinder.ViewModels.OutputViewModels;
 
 namespace JobFinder.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IJobService jobService;
+
+        public HomeController(IJobService jobService)
+        {
+            this.jobService = jobService;
+        }
         public IActionResult Index()
         {
+            var listOfJobAdds = this.jobService.AllJobs().ToList();
+
+            if (listOfJobAdds.Count > 0)
+            {
+                return this.View(new ListOfAllJobs
+                {
+                    AllJobs = listOfJobAdds
+                });
+            }
+
             return View();
         }
 

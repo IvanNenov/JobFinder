@@ -1,4 +1,5 @@
-﻿@{
+﻿@model JobFinder.ViewModels.OutputViewModels.ListOfAllJobs
+@{
     ViewData["Title"] = "Home Page";
 }
 <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
@@ -43,8 +44,6 @@
                                                                 <option value="">Category</option>
                                                                 <option value="">Full Time</option>
                                                                 <option value="">Part Time</option>
-                                                               @*// <option value="">Freelance</option>
-                                                                <option value="">Internship</option>*@
                                                                 <option value="">Temporary</option>
                                                             </select>
                                                         </div>
@@ -90,8 +89,6 @@
                                                                 <option value="">Category</option>
                                                                 <option value="">Full Time</option>
                                                                 <option value="">Part Time</option>
-                                                                @*<option value="">Freelance</option>
-                                                                <option value="">Internship</option>*@
                                                                 <option value="">Temporary</option>
                                                             </select>
                                                         </div>
@@ -135,7 +132,7 @@
         </div>
         <div class="row">
 
-            @for (int i = 0; i < 10; i++)
+            @foreach(var job in Model.AllJobs)
             {
 
                 <div class="col-md-12 ftco-animate">
@@ -144,14 +141,14 @@
 
                         <div class="mb-4 mb-md-0 mr-5">
                             <div class="job-post-item-header d-flex align-items-center">
-                                <h2 class="mr-3 text-black h3">Frontend Development @i </h2>
+                                <h2 class="mr-3 text-black h3">@job.Name</h2>
                                 <div class="badge-wrap">
-                                    <span class="bg-primary text-white badge py-2 px-3">Partime</span>
+                                    <span class="bg-primary text-white badge py-2 px-3">@job.JobType.ToString()</span>
                                 </div>
                             </div>
                             <div class="job-post-item-body d-block d-md-flex">
-                                <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
-                                <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
+                                <div class="mr-3"><span class="icon-layers"></span> <a href="#">@job.CompanyName</a></div>
+                                <div><span class="icon-my_location"></span> <span>@job.CompanyAddress</span></div>
                             </div>
                         </div>
 

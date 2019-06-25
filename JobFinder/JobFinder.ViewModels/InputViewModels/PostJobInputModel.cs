@@ -19,6 +19,7 @@ namespace JobFinder.ViewModels.InputViewModels
         [MaxLength(50)]
         public string Description { get; set; }
 
+        public string Location { get; set; }
         public decimal? Salary { get; set; }
 
     }

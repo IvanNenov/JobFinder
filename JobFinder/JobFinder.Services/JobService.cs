@@ -6,6 +6,7 @@ using JobFinder.Data;
 using JobFinder.Models;
 using JobFinder.Services.Contracts;
 using JobFinder.ViewModels.InputViewModels;
+using JobFinder.ViewModels.OutputViewModels;
 
 namespace JobFinder.Services
 {
@@ -33,11 +34,25 @@ namespace JobFinder.Services
                 Salary = model.Salary,
                 Company = company,
                 Description = model.Description,
+                Location = model.Location,
                 CreatedOn = DateTime.UtcNow,
             };
 
             this.context.JobAdds.Add(jobAdd);
             this.context.SaveChangesAsync();
+        }
+
+        public IQueryable<AllJobsView> AllJobs()
+        {
+            var job = this.context.JobAdds.Select(x => new AllJobsView
+            {
+                Name = x.JobTitle,
+                CompanyAddress = x.Location,
+                CompanyName = x.Company.Name,
+                JobType = x.JobType.Value
+            });
+
+            return job;
         }
     }
 }
