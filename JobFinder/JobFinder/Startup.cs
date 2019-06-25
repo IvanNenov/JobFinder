@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JobFinder.Data;
 using JobFinder.Models;
+using JobFinder.Services;
+using JobFinder.Services.Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -52,6 +54,9 @@ namespace JobFinder
                 .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<JobDbContext>();
+
+            services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<IJobService, JobService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

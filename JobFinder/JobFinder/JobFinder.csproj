@@ -45,6 +45,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JobFinder.Data\JobFinder.Data.csproj" />
+    <ProjectReference Include="..\JobFinder.Services\JobFinder.Services.csproj" />
   </ItemGroup>
 
 </Project>

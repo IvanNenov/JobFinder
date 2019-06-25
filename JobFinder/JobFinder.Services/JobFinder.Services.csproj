@@ -4,4 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JobFinder.Data\JobFinder.Data.csproj" />
+    <ProjectReference Include="..\JobFinder.Models\JobFinder.Models.csproj" />
+    <ProjectReference Include="..\JobFinder.ViewModels\JobFinder.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
