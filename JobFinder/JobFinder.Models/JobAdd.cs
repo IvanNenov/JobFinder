@@ -11,7 +11,7 @@ namespace JobFinder.Models
             this.CandidatesForPosition = new HashSet<UserJobAdds>();
         }
         public string Id { get; set; }
-
+        public string JobTitle { get; set; }
         public string Description { get; set; }
 
         public decimal? Salary { get; set; }
