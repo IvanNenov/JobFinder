@@ -35,10 +35,19 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a asp-controller="Home" asp-action="Index" class="nav-link">Home</a></li>
                     <li class="nav-item"><a asp-controller="Home" asp-action="About" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                    <li class="nav-item cta mr-md-2"><a href="new-post.html" class="nav-link">Post a Job</a></li>
-                    <li class="nav-item cta cta-colored"><a href="job-post.html" class="nav-link">Want a Job</a></li>
+                    <li class="nav-item"><a href="/Identity/Account/Logout" class="nav-link">Logout</a></li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item cta mr-md-2"><a asp-controller="Jobs" asp-action="PostJob" class="nav-link">Post a Job</a></li>
+                        <li class="nav-item cta cta-colored"><a href="job-post.html" class="nav-link">Want a Job</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a href="/Identity/Account/Register" class="nav-link">Register</a></li>
+                        <li class="nav-item"><a href="/Identity/Account/Login" class="nav-link">Login</a></li>
+                    }
 
                 </ul>
             </div>
