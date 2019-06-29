@@ -57,6 +57,7 @@ namespace JobFinder
 
             services.AddTransient<ICompanyService, CompanyService>();
             services.AddTransient<IJobService, JobService>();
+            services.AddTransient<IFormEntryService, FormEntryService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

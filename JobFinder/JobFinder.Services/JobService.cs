@@ -42,7 +42,7 @@ namespace JobFinder.Services
             this.context.JobAdds.Add(jobAdd);
             this.context.SaveChanges();
         }
-
+       
         public IQueryable<AllJobsView> AllJobs()
         {
             var job = this.context.JobAdds.Select(x => new AllJobsView
