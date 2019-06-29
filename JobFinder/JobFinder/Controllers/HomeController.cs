@@ -20,7 +20,7 @@ namespace JobFinder.Controllers
         }
         public IActionResult Index()
         {
-            var listOfJobAdds = this.jobService.AllJobs().ToList();
+            var listOfJobAdds = this.jobService.AllJobs().OrderByDescending(x => x.CreatedOn).ToList();
 
             if (listOfJobAdds.Count > 0)
             {

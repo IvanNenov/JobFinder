@@ -13,5 +13,7 @@ namespace JobFinder.Services.Contracts
         void CreateJob(PostJobInputModel model);
 
         IQueryable<AllJobsView> AllJobs();
+
+        IQueryable<SearchJobOutputViewModel> SearchForJob(ListOfAllJobs model);
     }
 }

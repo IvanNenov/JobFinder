@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using JobFinder.Models;
-using JobFinder.ViewModels.InputViewModels;
 
-namespace JobFinder.ViewModels.OutputViewModels
+namespace JobFinder.ViewModels.InputViewModels
 {
-    public class ListOfAllJobs
+    public class SearchForJobInputViewModel
     {
-        public IEnumerable<AllJobsView> AllJobs { get; set; }
-
-        public IEnumerable<SearchJobOutputViewModel> SearchOutput { get; set; }
-
         [MaxLength(50)]
         public string Name { get; set; }
 
         public JobType? JobType { get; set; }
+        
+        [MaxLength(50)]
+        public string Location { get; set; }
     }
 }

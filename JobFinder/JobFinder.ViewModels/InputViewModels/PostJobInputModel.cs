@@ -20,6 +20,7 @@ namespace JobFinder.ViewModels.InputViewModels
         public string Description { get; set; }
 
         public string Location { get; set; }
+
         public decimal? Salary { get; set; }
 
     }

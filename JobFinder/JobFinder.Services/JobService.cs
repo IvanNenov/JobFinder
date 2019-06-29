@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using JobFinder.Data;
@@ -39,7 +40,7 @@ namespace JobFinder.Services
             };
 
             this.context.JobAdds.Add(jobAdd);
-            this.context.SaveChangesAsync();
+            this.context.SaveChanges();
         }
 
         public IQueryable<AllJobsView> AllJobs()
@@ -49,10 +50,69 @@ namespace JobFinder.Services
                 Name = x.JobTitle,
                 CompanyAddress = x.Location,
                 CompanyName = x.Company.Name,
-                JobType = x.JobType.Value
+                JobType = x.JobType.Value,
+                CreatedOn = x.CreatedOn
             });
 
             return job;
+        }
+       public IQueryable<SearchJobOutputViewModel> SearchForJob(ListOfAllJobs model)
+        {
+            if (model.Name != null && model.JobType != null)
+            {
+                var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(model.Name) && x.JobType == model.JobType)
+                    .Select(x => new SearchJobOutputViewModel
+                    {
+                        Name = x.JobTitle,
+                        CompanyAddress = x.Company.Address,
+                        CompanyName = x.Company.Name,
+                        JobType = x.JobType
+                    });
+
+                return listOfJobs;
+            }
+
+            else if (model.Name != null && model.JobType == null)
+            {
+                var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(model.Name))
+                    .Select(x => new SearchJobOutputViewModel
+                    {
+                        Name = x.JobTitle,
+                        CompanyAddress = x.Company.Address,
+                        CompanyName = x.Company.Name,
+                        JobType = x.JobType
+                    });
+
+                return listOfJobs;
+            }
+
+            else if (model.Name == null && model.JobType != null)
+            {
+                var listOfJobs = this.context.JobAdds.Where(x => x.JobType == model.JobType)
+                    .Select(x => new SearchJobOutputViewModel
+                    {
+                        Name = x.JobTitle,
+                        CompanyAddress = x.Company.Address,
+                        CompanyName = x.Company.Name,
+                        JobType = x.JobType
+                    });
+
+                return listOfJobs;
+            }
+
+            else
+            {
+                var listOfJobs = this.context.JobAdds.Select(x => new SearchJobOutputViewModel()
+                {
+                    Name = x.JobTitle,
+                    CompanyAddress = x.Company.Address,
+                    CompanyName = x.Company.Name,
+                    JobType = x.JobType
+                });
+
+                return listOfJobs;
+            }
+            
         }
     }
 }

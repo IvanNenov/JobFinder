@@ -6,8 +6,8 @@
 
     <div class="site-wrap" style="background-image: url('~/images/hero_2.jpg');">
 
-        <div class="site-mobile-menu">
-            <div class="site-mobile-menu-header">
+        <div class="~/site-mobile-menu-body">
+            <div class="~/site-mobile-menu-header">
                 <div class="site-mobile-menu-close mt-3">
                     <span class="icon-close2 js-menu-toggle"></span>
                 </div>
@@ -33,12 +33,9 @@
         <div class="unit-5 overlay">
             <div class="container text-center">
                 <h2 class="mb-0">Post a Job</h2>
-                <p class="mb-0 unit-6"><a href="index.html">Home</a> <span class="sep">></span> <span>Post a Job</span></p>
+                <p class="mb-0 unit-6"><a asp-controller="Home" asp-action="Index">Home</a> <span class="sep">></span> <span>Post a Job</span></p>
             </div>
         </div>
-
-
-
 
         <div class="site-section bg-light">
             <div class="container">
@@ -46,20 +43,6 @@
 
                     <div class="col-md-12 col-lg-8 mb-5">
                         <form method="post" class="p-5 bg-white">
-
-                            @*<div class="row form-group">
-                                <div class="col-md-12 mb-3 mb-md-0">
-                                    <label for="option-price-1">
-                                        <input type="checkbox" id="option-price-1"> <span class="text-success">$300</span> For 30 days
-                                    </label>
-                                </div>
-                                <div class="col-md-12 mb-3 mb-md-0">
-                                    <label for="option-price-2">
-                                        <input type="checkbox" id="option-price-2"> <span class="text-success">$200</span> / Monthly Recurring
-                                    </label>
-                                </div>
-                            </div>*@
-
                             <div class="row form-group">
                                 <div class="col-md-12 mb-3 mb-md-0">
                                     <label class="font-weight-bold" asp-for="JobTitle" id="JobTitle">Job Title</label>

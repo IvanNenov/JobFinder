@@ -5,16 +5,14 @@ using JobFinder.Models;
 
 namespace JobFinder.ViewModels.OutputViewModels
 {
-    public class AllJobsView
+    public class SearchJobOutputViewModel
     {
         public string Name { get; set; }
 
-        public JobType JobType { get; set; }
+        public JobType? JobType { get; set; }
 
         public string CompanyName { get; set; }
 
         public string CompanyAddress { get; set; }
-
-        public DateTime CreatedOn { get; set; }
     }
 }

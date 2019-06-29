@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JobFinder.Services.Contracts;
 using JobFinder.ViewModels.InputViewModels;
+using JobFinder.ViewModels.OutputViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobFinder.Controllers
@@ -31,6 +32,16 @@ namespace JobFinder.Controllers
             //}
 
             //return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult Search(ListOfAllJobs model)
+        {
+            var listOfJobs = this.jobService.SearchForJob(model);
+            return this.View(new ListOfAllJobs()
+            {
+                SearchOutput = listOfJobs
+            });
         }
     }
 }
