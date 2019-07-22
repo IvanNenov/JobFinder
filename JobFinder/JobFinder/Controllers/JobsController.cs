@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using JobFinder.Services.Contracts;
 using JobFinder.ViewModels.InputViewModels;
@@ -12,10 +13,12 @@ namespace JobFinder.Controllers
     public class JobsController : Controller
     {
         private readonly IJobService jobService;
+        private readonly ICvService cvService;
 
-        public JobsController(IJobService jobService)
+        public JobsController(IJobService jobService, ICvService cvService)
         {
             this.jobService = jobService;
+            this.cvService = cvService;
         }
         public IActionResult PostJob()
         {
@@ -42,6 +45,25 @@ namespace JobFinder.Controllers
             {
                 SearchOutput = listOfJobs
             });
+        }
+
+        
+        public IActionResult CreateCv()
+        {
+            if (this.cvService.HasCv())
+            {
+                var model =  this.cvService.GetMyCv();
+                return this.View("UserCv", model);
+            }
+
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateCv(CvInputViewModel model)
+        {
+            this.cvService.CreateCv(model);
+            return this.Redirect("/");
         }
     }
 }
