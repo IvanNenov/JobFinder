@@ -26,11 +26,11 @@ namespace JobFinder.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostJob(PostJobInputModel model)
+        public IActionResult PostJob(PostJobInputModel model)
         {
             //if (ModelState.IsValid)
             //{
-                this.jobService.CreateJob(model);
+               this.jobService.CreateJob(model);
                 return Redirect("/");
             //}
 

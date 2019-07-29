@@ -12,7 +12,6 @@ namespace JobFinder.ViewModels.InputViewModels
 
        [EmailAddress]
         public string SenderEmail { get; set; }
-
        [MaxLength(10)]
         public string PhoneNumber { get; set; }
 
