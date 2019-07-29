@@ -22,6 +22,5 @@ namespace JobFinder.ViewModels.InputViewModels
         public string Location { get; set; }
 
         public decimal? Salary { get; set; }
-
     }
 }

@@ -10,7 +10,7 @@ namespace JobFinder.Services.Contracts
 {
     public interface IJobService
     {
-        void CreateJob(PostJobInputModel model);
+        void CreateJob(PostJobInputModel model, CompanyInputViewModel companyModel);
 
         IQueryable<AllJobsView> AllJobs();
 

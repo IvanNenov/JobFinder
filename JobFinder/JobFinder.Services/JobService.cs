@@ -14,18 +14,23 @@ namespace JobFinder.Services
     public class JobService : IJobService
     {
         private readonly JobDbContext context;
+        private readonly ICompanyService _companyService;
 
-        public JobService(JobDbContext context)
+        public JobService(JobDbContext context, ICompanyService companyService)
         {
             this.context = context;
+            _companyService = companyService;
         }
-        public void CreateJob(PostJobInputModel model)
+        public void CreateJob(PostJobInputModel model, CompanyInputViewModel companyModel)
         {
-            var company = this.context.Companies.FirstOrDefault(x => x.Name == model.Company);
+            Company company = null;
+
+            company = this.context.Companies.FirstOrDefault(x => x.Name == model.Company);
 
             if (company == null)
             {
-                return;
+                this._companyService.CreateCompany(companyModel, model);
+                company = this.context.Companies.FirstOrDefault(x => x.Name == model.Company);
             }
 
             var jobAdd = new JobAdd
@@ -33,16 +38,24 @@ namespace JobFinder.Services
                 JobTitle = model.JobTitle,
                 JobType = model.JobType,
                 Salary = model.Salary,
+                CompanyId = company.Id,
                 Company = company,
                 Description = model.Description,
                 Location = model.Location,
                 CreatedOn = DateTime.UtcNow,
             };
 
+            var currentCompany = this.context.Companies.FirstOrDefault(x => x.Name == model.Company);
             this.context.JobAdds.Add(jobAdd);
             this.context.SaveChanges();
+            if (currentCompany != null)
+            {
+                currentCompany.JobAdds.Add(jobAdd);
+                this.context.SaveChanges();
+            }
+
         }
-       
+
         public IQueryable<AllJobsView> AllJobs()
         {
             var job = this.context.JobAdds.Select(x => new AllJobsView
@@ -56,7 +69,7 @@ namespace JobFinder.Services
 
             return job;
         }
-       public IQueryable<SearchJobOutputViewModel> SearchForJob(ListOfAllJobs model)
+        public IQueryable<SearchJobOutputViewModel> SearchForJob(ListOfAllJobs model)
         {
             if (model.Name != null && model.JobType != null)
             {
@@ -112,7 +125,7 @@ namespace JobFinder.Services
 
                 return listOfJobs;
             }
-            
+
         }
     }
 }
