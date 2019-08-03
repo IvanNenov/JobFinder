@@ -11,10 +11,16 @@ namespace JobFinder.ViewModels.OutputViewModels
     {
         public IEnumerable<AllJobsView> AllJobs { get; set; }
 
+        public double TotalPagesCount { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        public int PageSize { get; set; }
+
         public IEnumerable<SearchJobOutputViewModel> SearchOutput { get; set; }
 
         [MaxLength(50)]
-        public string Name { get; set; }
+        public string SearchTerm { get; set; }
 
         public JobType? JobType { get; set; }
     }

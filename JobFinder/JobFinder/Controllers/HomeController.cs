@@ -18,16 +18,37 @@ namespace JobFinder.Controllers
         {
             this.jobService = jobService;
         }
-        public IActionResult Index()
-        {
-            var listOfJobAdds = this.jobService.AllJobs().OrderByDescending(x => x.CreatedOn).ToList();
 
-            if (listOfJobAdds.Count > 0)
+        public IActionResult Index(int? currentPage)
+        {
+            // var listOfJobAdds = this.jobService.AllJobs().OrderByDescending(x => x.CreatedOn).ToList();
+
+            var page = currentPage ?? 1;
+
+            var pageSize = 2;
+            var skip = (page - 1) * pageSize;
+
+            var totalPageCount = Math.Ceiling((double)this.jobService.AllJobs().Count() / pageSize);
+
+            var pagedJobList = this.jobService
+                .AllJobs()
+                .Skip(skip)
+                .Take(pageSize)
+                .OrderByDescending(x => x.CreatedOn)
+                .ToList();
+
+
+            var viewModel = new ListOfAllJobs
             {
-                return this.View(new ListOfAllJobs
-                {
-                    AllJobs = listOfJobAdds
-                });
+                AllJobs = pagedJobList,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPagesCount = totalPageCount
+            };
+
+            if (pagedJobList.Count > 0)
+            {
+                return this.View(viewModel);
             }
 
             return View();

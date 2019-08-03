@@ -71,9 +71,9 @@ namespace JobFinder.Services
         }
         public IQueryable<SearchJobOutputViewModel> SearchForJob(ListOfAllJobs model)
         {
-            if (model.Name != null && model.JobType != null)
+            if (model.SearchTerm != null && model.JobType != null)
             {
-                var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(model.Name) && x.JobType == model.JobType)
+                var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(model.SearchTerm) && x.JobType == model.JobType)
                     .Select(x => new SearchJobOutputViewModel
                     {
                         Name = x.JobTitle,
@@ -85,9 +85,9 @@ namespace JobFinder.Services
                 return listOfJobs;
             }
 
-            else if (model.Name != null && model.JobType == null)
+            else if (model.SearchTerm != null && model.JobType == null)
             {
-                var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(model.Name))
+                var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(model.SearchTerm))
                     .Select(x => new SearchJobOutputViewModel
                     {
                         Name = x.JobTitle,
@@ -99,7 +99,7 @@ namespace JobFinder.Services
                 return listOfJobs;
             }
 
-            else if (model.Name == null && model.JobType != null)
+            else if (model.SearchTerm == null && model.JobType != null)
             {
                 var listOfJobs = this.context.JobAdds.Where(x => x.JobType == model.JobType)
                     .Select(x => new SearchJobOutputViewModel

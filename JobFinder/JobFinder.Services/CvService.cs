@@ -19,9 +19,20 @@ namespace JobFinder.Services
 
         public CvService(JobDbContext context, IHttpContextAccessor accessor)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            if (accessor == null)
+            {
+                throw new ArgumentNullException(nameof(accessor));
+            }
+            
             this.context = context;
             this.accessor = accessor;
         }
+
         public void CreateCv(CvInputViewModel model)
         {
             var currentUserName = this.accessor.HttpContext.User.Identity.Name;
@@ -50,7 +61,7 @@ namespace JobFinder.Services
             var currentUserName = this.accessor.HttpContext.User.Identity.Name;
             var currentUserObject = this.context.Users.FirstOrDefault(x => x.UserName == currentUserName);
 
-            if (currentUserObject.CvId == null)
+            if (currentUserObject?.CvId == null)
             {
                 return false;
             }
