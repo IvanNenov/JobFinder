@@ -37,17 +37,16 @@ namespace JobFinder.Controllers
             //return this.View();
         }
 
-        [HttpPost]
-        public IActionResult Search(ListOfAllJobs model)
-        {
-            var listOfJobs = this.jobService.SearchForJob(model);
-            return this.View(new ListOfAllJobs()
-            {
-                SearchOutput = listOfJobs
-            });
-        }
+        //[HttpPost]
+        //public IActionResult Search(ListOfAllJobs model)
+        //{
+        //    var listOfJobs = this.jobService.SearchForJob(model);
+        //    return this.View(new ListOfAllJobs()
+        //    {
+        //        SearchOutput = listOfJobs
+        //    });
+        //}
 
-        
         public IActionResult CreateCv()
         {
             if (this.cvService.HasCv())

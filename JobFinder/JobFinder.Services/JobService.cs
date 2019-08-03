@@ -56,9 +56,9 @@ namespace JobFinder.Services
 
         }
 
-        public IQueryable<AllJobsView> AllJobs()
+        public IQueryable<AllJobDto> AllJobs()
         {
-            var job = this.context.JobAdds.Select(x => new AllJobsView
+            var job = this.context.JobAdds.Select(x => new AllJobDto
             {
                 Name = x.JobTitle,
                 CompanyAddress = x.Location,
@@ -69,58 +69,62 @@ namespace JobFinder.Services
 
             return job;
         }
-        public IQueryable<SearchJobOutputViewModel> SearchForJob(ListOfAllJobs model)
+
+        public IQueryable<AllJobDto> SearchForJob(string searchTerm, string jobType)
         {
-            if (model.SearchTerm != null && model.JobType != null)
+            bool isJobTypeEnumParsed = Enum.TryParse(jobType, out JobType jobTypeEnum);
+            
+            if (searchTerm != null && jobType != null)
             {
-                var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(model.SearchTerm) && x.JobType == model.JobType)
-                    .Select(x => new SearchJobOutputViewModel
+                var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(searchTerm) && x.JobType == jobTypeEnum)
+                    .Select(x => new AllJobDto
                     {
                         Name = x.JobTitle,
                         CompanyAddress = x.Company.Address,
                         CompanyName = x.Company.Name,
-                        JobType = x.JobType
+                        JobType = x.JobType.Value,
+                        CreatedOn = x.CreatedOn
                     });
 
                 return listOfJobs;
             }
-
-            else if (model.SearchTerm != null && model.JobType == null)
+            else if (searchTerm != null && !isJobTypeEnumParsed)
             {
-                var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(model.SearchTerm))
-                    .Select(x => new SearchJobOutputViewModel
+                var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(searchTerm))
+                    .Select(x => new AllJobDto
                     {
                         Name = x.JobTitle,
                         CompanyAddress = x.Company.Address,
                         CompanyName = x.Company.Name,
-                        JobType = x.JobType
+                        JobType = x.JobType.Value,
+                        CreatedOn = x.CreatedOn
                     });
 
                 return listOfJobs;
             }
-
-            else if (model.SearchTerm == null && model.JobType != null)
+            else if (searchTerm == null && isJobTypeEnumParsed)
             {
-                var listOfJobs = this.context.JobAdds.Where(x => x.JobType == model.JobType)
-                    .Select(x => new SearchJobOutputViewModel
+                var listOfJobs = this.context.JobAdds.Where(x => x.JobType == jobTypeEnum)
+                    .Select(x => new AllJobDto
                     {
                         Name = x.JobTitle,
                         CompanyAddress = x.Company.Address,
                         CompanyName = x.Company.Name,
-                        JobType = x.JobType
+                        JobType = x.JobType.Value,
+                        CreatedOn = x.CreatedOn
                     });
 
                 return listOfJobs;
             }
-
             else
             {
-                var listOfJobs = this.context.JobAdds.Select(x => new SearchJobOutputViewModel()
+                var listOfJobs = this.context.JobAdds.Select(x => new AllJobDto
                 {
                     Name = x.JobTitle,
                     CompanyAddress = x.Company.Address,
                     CompanyName = x.Company.Name,
-                    JobType = x.JobType
+                    JobType = x.JobType.Value,
+                    CreatedOn = x.CreatedOn
                 });
 
                 return listOfJobs;

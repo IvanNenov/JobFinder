@@ -9,7 +9,7 @@ namespace JobFinder.ViewModels.OutputViewModels
 {
     public class ListOfAllJobs
     {
-        public IEnumerable<AllJobsView> AllJobs { get; set; }
+        public IEnumerable<AllJobDto> AllJobs { get; set; }
 
         public double TotalPagesCount { get; set; }
 
@@ -17,7 +17,7 @@ namespace JobFinder.ViewModels.OutputViewModels
 
         public int PageSize { get; set; }
 
-        public IEnumerable<SearchJobOutputViewModel> SearchOutput { get; set; }
+        public IEnumerable<AllJobDto> SearchOutput { get; set; }
 
         [MaxLength(50)]
         public string SearchTerm { get; set; }

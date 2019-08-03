@@ -12,8 +12,8 @@ namespace JobFinder.Services.Contracts
     {
         void CreateJob(PostJobInputModel model, CompanyInputViewModel companyModel);
 
-        IQueryable<AllJobsView> AllJobs();
+        IQueryable<AllJobDto> AllJobs();
 
-        IQueryable<SearchJobOutputViewModel> SearchForJob(ListOfAllJobs model);
+        IQueryable<AllJobDto> SearchForJob(string searchTerm, string jobType);
     }
 }

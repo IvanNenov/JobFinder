@@ -5,7 +5,7 @@ using JobFinder.Models;
 
 namespace JobFinder.ViewModels.OutputViewModels
 {
-    public class AllJobsView
+    public class AllJobDto
     {
         public string Name { get; set; }
 

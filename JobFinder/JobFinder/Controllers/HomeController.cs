@@ -19,39 +19,52 @@ namespace JobFinder.Controllers
             this.jobService = jobService;
         }
 
-        public IActionResult Index(int? currentPage)
+        public IActionResult Index(int? currentPage, string searchTerm, string jobType)
         {
-            // var listOfJobAdds = this.jobService.AllJobs().OrderByDescending(x => x.CreatedOn).ToList();
-
+            ICollection<AllJobDto> allJobs = new List<AllJobDto>();
+            
             var page = currentPage ?? 1;
-
             var pageSize = 2;
             var skip = (page - 1) * pageSize;
 
-            var totalPageCount = Math.Ceiling((double)this.jobService.AllJobs().Count() / pageSize);
+            double totalPageCount; 
 
-            var pagedJobList = this.jobService
-                .AllJobs()
-                .Skip(skip)
-                .Take(pageSize)
-                .OrderByDescending(x => x.CreatedOn)
-                .ToList();
+            if (!string.IsNullOrEmpty(searchTerm) || !string.IsNullOrEmpty(jobType))
+            {
+                allJobs = this.jobService.SearchForJob(searchTerm, jobType)
+                    .Skip(skip)
+                    .Take(pageSize)
+                    .OrderByDescending(x => x.CreatedOn)
+                    .ToList();
 
+                totalPageCount = Math.Ceiling((double)this.jobService.SearchForJob(searchTerm, jobType).Count() / pageSize);
+            }
+            else
+            {
+                allJobs =  this.jobService
+                    .AllJobs()
+                    .Skip(skip)
+                    .Take(pageSize)
+                    .OrderByDescending(x => x.CreatedOn)
+                    .ToList();
+
+                totalPageCount = Math.Ceiling((double)this.jobService.AllJobs().Count() / pageSize);
+            }
 
             var viewModel = new ListOfAllJobs
             {
-                AllJobs = pagedJobList,
+                AllJobs = allJobs,
                 CurrentPage = page,
                 PageSize = pageSize,
                 TotalPagesCount = totalPageCount
             };
 
-            if (pagedJobList.Count > 0)
+            if (allJobs.Count > 0)
             {
                 return this.View(viewModel);
             }
 
-            return View();
+            return View(viewModel);
         }
 
         public IActionResult Privacy()

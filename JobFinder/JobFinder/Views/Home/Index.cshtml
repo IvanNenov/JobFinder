@@ -35,13 +35,13 @@
                             <div class="tab-content p-4" id="v-pills-tabContent">
 
                                 <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-                                    <form method="post" class="search-job">
+                                    <form method="get" class="search-job">
                                         <div class="row">
                                             <div class="col-md">
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <div class="icon"><span class="icon-briefcase"></span></div>
-                                                        <input type="text" asp-for="SearchTerm" class="form-control" placeholder="eg. Garphic. Web Developer">
+                                                        <input type="text" name="SearchTerm" class="form-control" placeholder="eg. Garphic. Web Developer">
                                                     </div>
                                                 </div>
                                             </div>
@@ -50,7 +50,7 @@
                                                     <div class="form-field">
                                                         <div class="select-wrap">
                                                             <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                            <select asp-for="JobType" class="form-control">
+                                                            <select name="JobType" class="form-control">
                                                                 <option selected disabled>Choose...</option>
                                                                 <option value="FullTime">Full-Time</option>
                                                                 <option value="PartTime">Part-Time</option>
@@ -65,7 +65,7 @@
                                             <div class="col-md">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <input type="submit" asp-controller="Jobs" asp-action="Search" value="Search" class="form-control btn btn-primary">
+                                                        <input type="submit" asp-controller="Home" asp-action="Index" value="Search" class="form-control btn btn-primary">
                                                     </div>
                                                 </div>
                                             </div>
@@ -186,10 +186,6 @@
                                 <li><a asp-controller="Home" asp-action="Index" asp-route-currentPage="@i"><span>@i</span></a></li>
                             }
                         }
-
-                        @*<li><a href="#">&lt;</a></li>*@
-
-                        @*<li><a href="#">&gt;</a></li>*@
                     </ul>
                 </div>
             </div>
