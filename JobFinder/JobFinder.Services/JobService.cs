@@ -60,6 +60,7 @@ namespace JobFinder.Services
         {
             var job = this.context.JobAdds.Select(x => new AllJobDto
             {
+                Id = x.Id,
                 Name = x.JobTitle,
                 CompanyAddress = x.Location,
                 CompanyName = x.Company.Name,

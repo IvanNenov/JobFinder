@@ -22,8 +22,6 @@ namespace JobFinder.Controllers
 
         public IActionResult Index(int? currentPage, string searchTerm, string jobType)
         {
-           
-
             ICollection<AllJobDto> allJobs = new List<AllJobDto>();
             
             var page = currentPage ?? 1;
