@@ -21,6 +21,7 @@ namespace JobFinder
 {
     public class Startup
     {
+        private const int PasswordRequiredLength = 3;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -44,7 +45,7 @@ namespace JobFinder
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
-                options.Password.RequiredLength = 3;
+                options.Password.RequiredLength = PasswordRequiredLength;
             });
 
             services.AddDbContext<JobDbContext>(options =>

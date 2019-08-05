@@ -28,8 +28,13 @@ namespace JobFinder.Controllers
         [HttpPost]
         public IActionResult Contact(FormEntryInputViewModel model)
         {
-            this.formEntryService.CreateFormEntry(model);
-            return this.Redirect("/");
+            if (ModelState.IsValid)
+            {
+                this.formEntryService.CreateFormEntry(model);
+                return this.Redirect("/");
+            }
+
+            return this.View();
         }
     }
 }

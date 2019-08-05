@@ -10,11 +10,11 @@ namespace JobFinder.ViewModels.InputViewModels
         [MaxLength(50)]
         public string SenderName { get; set; }
 
-       [EmailAddress]
+        [EmailAddress]
         public string SenderEmail { get; set; }
-       [MaxLength(10)]
-        public string PhoneNumber { get; set; }
 
+        [MaxLength(10)]
+        public string PhoneNumber { get; set; }
 
         [MaxLength(100)]
         public string Message { get; set; }
