@@ -79,6 +79,22 @@ namespace JobFinder
                 app.UseHsts();
             }
 
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetRequiredService<JobDbContext>())
+                {
+                    context.Database.EnsureCreated();
+
+                    if (!context.Roles.Any())
+                    {
+                        context.Roles.Add(new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" });
+                        context.Roles.Add(new IdentityRole { Name = "User", NormalizedName = "USER" });
+                    }
+
+                    context.SaveChanges();
+                }
+            }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
           //  app.UseCookiePolicy();
