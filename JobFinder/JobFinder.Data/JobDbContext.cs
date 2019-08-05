@@ -12,6 +12,7 @@ namespace JobFinder.Data
         public JobDbContext(DbContextOptions options)
           : base(options)
         {
+            
         }
 
         public DbSet<User> Users { get; set; }

@@ -32,6 +32,7 @@ namespace JobFinder.Controllers
                 return this.Redirect("/");
             }
 
+
             return this.View();
         }
     }

@@ -54,8 +54,7 @@ namespace JobFinder.Services
             currentJob.Description = model.Description;
             currentJob.Location = model.Location;
             currentJob.Salary = model.Salary;
-            this._context.Update(currentJob);
-
+          
             this._context.SaveChanges();
         }
     }

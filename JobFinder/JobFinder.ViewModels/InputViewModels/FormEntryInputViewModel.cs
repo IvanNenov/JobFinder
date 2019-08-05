@@ -18,6 +18,8 @@ namespace JobFinder.ViewModels.InputViewModels
 
         [MaxLength(100)]
         public string Message { get; set; }
+
+        public DateTime CreatedOn { get; set; }
         
     }
 }
