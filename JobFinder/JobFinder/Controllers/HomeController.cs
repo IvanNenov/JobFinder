@@ -24,7 +24,7 @@ namespace JobFinder.Controllers
             ICollection<AllJobDto> allJobs = new List<AllJobDto>();
             
             var page = currentPage ?? 1;
-            var pageSize = 2;
+            var pageSize = 5;
             var skip = (page - 1) * pageSize;
 
             double totalPageCount; 
