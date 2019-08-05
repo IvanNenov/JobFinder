@@ -32,13 +32,13 @@ namespace JobFinder.Controllers
         [HttpPost]
         public IActionResult PostJob(PostJobInputModel model, CompanyInputViewModel companyModel)
         {
-            //if (ModelState.IsValid)
-            //{
-               this.jobService.CreateJob(model, companyModel);
+            if (ModelState.IsValid)
+            {
+                this.jobService.CreateJob(model, companyModel);
                 return Redirect("/");
-            //}
+            }
 
-            //return this.View();
+            return this.View();
         }
 
         [Authorize()]
