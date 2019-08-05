@@ -18,13 +18,11 @@ namespace JobFinder.Controllers
             this.formEntryService = formEntryService;
         }
 
-        [Authorize()]
         public IActionResult Contact()
         {
             return this.View();
         }
 
-        [Authorize()]
         [HttpPost]
         public IActionResult Contact(FormEntryInputViewModel model)
         {
