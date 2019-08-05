@@ -22,6 +22,8 @@ namespace JobFinder.Controllers
 
         public IActionResult Index(int? currentPage, string searchTerm, string jobType)
         {
+           
+
             ICollection<AllJobDto> allJobs = new List<AllJobDto>();
             
             var page = currentPage ?? 1;
@@ -59,6 +61,11 @@ namespace JobFinder.Controllers
                 PageSize = pageSize,
                 TotalPagesCount = totalPageCount
             };
+
+            if (this.User.IsInRole("Admin"))
+            {
+                return this.View("AdminIndex", viewModel);
+            }
 
             if (allJobs.Count > 0)
             {
