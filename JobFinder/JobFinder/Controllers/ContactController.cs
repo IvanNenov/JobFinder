@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JobFinder.Services.Contracts;
 using JobFinder.ViewModels.InputViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobFinder.Controllers
@@ -17,11 +18,13 @@ namespace JobFinder.Controllers
             this.formEntryService = formEntryService;
         }
 
+        [Authorize()]
         public IActionResult Contact()
         {
             return this.View();
         }
 
+        [Authorize()]
         [HttpPost]
         public IActionResult Contact(FormEntryInputViewModel model)
         {

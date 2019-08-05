@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using JobFinder.Services.Contracts;
 using JobFinder.ViewModels.InputViewModels;
 using JobFinder.ViewModels.OutputViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobFinder.Controllers
@@ -20,11 +21,14 @@ namespace JobFinder.Controllers
             this.jobService = jobService;
             this.cvService = cvService;
         }
+
+        [Authorize()]
         public IActionResult PostJob()
         {
             return this.View();
         }
 
+        [Authorize()]
         [HttpPost]
         public IActionResult PostJob(PostJobInputModel model, CompanyInputViewModel companyModel)
         {
@@ -37,16 +41,7 @@ namespace JobFinder.Controllers
             //return this.View();
         }
 
-        //[HttpPost]
-        //public IActionResult Search(ListOfAllJobs model)
-        //{
-        //    var listOfJobs = this.jobService.SearchForJob(model);
-        //    return this.View(new ListOfAllJobs()
-        //    {
-        //        SearchOutput = listOfJobs
-        //    });
-        //}
-
+        [Authorize()]
         public IActionResult CreateCv()
         {
             if (this.cvService.HasCv())
@@ -58,6 +53,7 @@ namespace JobFinder.Controllers
             return this.View();
         }
 
+        [Authorize()]
         [HttpPost]
         public IActionResult CreateCv(CvInputViewModel model)
         {

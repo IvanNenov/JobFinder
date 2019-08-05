@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc;
 using JobFinder.Models;
 using JobFinder.Services.Contracts;
 using JobFinder.ViewModels.OutputViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JobFinder.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IJobService jobService;
+        private readonly IJobService _jobService;
 
         public HomeController(IJobService jobService)
         {
-            this.jobService = jobService;
+            this._jobService = jobService;
         }
 
         public IActionResult Index(int? currentPage, string searchTerm, string jobType)
@@ -31,24 +32,24 @@ namespace JobFinder.Controllers
 
             if (!string.IsNullOrEmpty(searchTerm) || !string.IsNullOrEmpty(jobType))
             {
-                allJobs = this.jobService.SearchForJob(searchTerm, jobType)
+                allJobs = this._jobService.SearchForJob(searchTerm, jobType)
                     .Skip(skip)
                     .Take(pageSize)
                     .OrderByDescending(x => x.CreatedOn)
                     .ToList();
 
-                totalPageCount = Math.Ceiling((double)this.jobService.SearchForJob(searchTerm, jobType).Count() / pageSize);
+                totalPageCount = Math.Ceiling((double)this._jobService.SearchForJob(searchTerm, jobType).Count() / pageSize);
             }
             else
             {
-                allJobs =  this.jobService
+                allJobs =  this._jobService
                     .AllJobs()
                     .Skip(skip)
                     .Take(pageSize)
                     .OrderByDescending(x => x.CreatedOn)
                     .ToList();
 
-                totalPageCount = Math.Ceiling((double)this.jobService.AllJobs().Count() / pageSize);
+                totalPageCount = Math.Ceiling((double)this._jobService.AllJobs().Count() / pageSize);
             }
 
             var viewModel = new ListOfAllJobs
