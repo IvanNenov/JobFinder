@@ -40,7 +40,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item cta mr-md-2"><a asp-controller="Jobs" asp-action="PostJob" class="nav-link">Post a Job</a></li>
-                        <li class="nav-item cta cta-colored"><a asp-controller="Jobs" asp-action="CreateCv" class="nav-link">My CV</a></li>
+                        <li class="nav-item cta cta-colored"><a asp-controller="Cv" asp-action="CreateCv" class="nav-link">My CV</a></li>
                         <form class="nav-item" asp-area="Identity" asp-page="/Account/Logout" 
                               asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">
                             <button type="submit" class="btn btn-link text-white-50"><i class="icon-account_circle"></i>Logout</button>

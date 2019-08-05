@@ -14,12 +14,10 @@ namespace JobFinder.Controllers
     public class JobsController : Controller
     {
         private readonly IJobService jobService;
-        private readonly ICvService cvService;
 
-        public JobsController(IJobService jobService, ICvService cvService)
+        public JobsController(IJobService jobService)
         {
             this.jobService = jobService;
-            this.cvService = cvService;
         }
 
         [Authorize()]
@@ -39,26 +37,6 @@ namespace JobFinder.Controllers
             }
 
             return this.View();
-        }
-
-        [Authorize()]
-        public IActionResult CreateCv()
-        {
-            if (this.cvService.HasCv())
-            {
-                var model =  this.cvService.GetMyCv();
-                return this.View("UserCv", model);
-            }
-
-            return this.View();
-        }
-
-        [Authorize()]
-        [HttpPost]
-        public IActionResult CreateCv(CvInputViewModel model)
-        {
-            this.cvService.CreateCv(model);
-            return this.Redirect("/");
         }
     }
 }
