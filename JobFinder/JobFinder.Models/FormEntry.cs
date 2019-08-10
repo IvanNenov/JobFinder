@@ -15,5 +15,7 @@ namespace JobFinder.Models
         public string PhoneNumber { get; set; }
 
         public string MessageBody { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

@@ -13,6 +13,8 @@ namespace JobFinder.ViewModels.OutputViewModels
 
         public string PhoneNumber { get; set; }
 
-        public string Message { get; set; }                            
+        public string Message { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

@@ -36,7 +36,6 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a asp-controller="Home" asp-action="Index" class="nav-link">Home</a></li>
                     <li class="nav-item"><a asp-controller="Home" asp-action="About" class="nav-link">About</a></li>
-                    <li class="nav-item"><a asp-controller="Contact" asp-action="Index" class="nav-link">Contact</a></li> 
                     
                     @if (User.IsInRole("Admin"))
                     {
@@ -51,6 +50,8 @@
 
                     else if(User.Identity.IsAuthenticated)
                     {
+                        <li class="nav-item"><a asp-controller="Contact" asp-action="Index" class="nav-link">Contact</a></li> 
+
                         <li class="nav-item cta mr-md-2"><a asp-controller="Jobs" asp-action="PostJob" class="nav-link">Post a Job</a></li>
                         <li class="nav-item cta cta-colored"><a asp-controller="Cv" asp-action="CreateCv" class="nav-link">My CV</a></li>
                         <form class="nav-item" asp-area="Identity" asp-page="/Account/Logout" 
@@ -60,6 +61,8 @@
                     }
                     else
                     {
+                        <li class="nav-item"><a asp-controller="Contact" asp-action="Index" class="nav-link">Contact</a></li> 
+
                         <li class="nav-item"><a asp-area="Identity" asp-page="/Account/Register" class="nav-link">Register</a></li>
                         <li class="nav-item"><a asp-area="Identity" asp-page="/Account/Login" class="nav-link">Login</a></li>
                     }

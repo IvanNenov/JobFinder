@@ -61,7 +61,7 @@ namespace JobFinder.Controllers
                 .GetAll()
                 .Skip(skip)
                 .Take(pageSize)
-                .OrderByDescending(x => x.SenderName)
+                .OrderBy(x => x.CreatedOn)
                 .ToList();
 
             double totalPageCount = Math.Ceiling((double)this._formEntryService.GetAll().Count() / pageSize);

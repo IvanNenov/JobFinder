@@ -26,6 +26,7 @@ namespace JobFinder.Services
                 SenderEmail = model.SenderEmail,
                 PhoneNumber = model.PhoneNumber,
                 MessageBody = model.Message,
+                CreatedOn = DateTime.UtcNow
             };
 
             this.context.FormEntries.Add(entry);
