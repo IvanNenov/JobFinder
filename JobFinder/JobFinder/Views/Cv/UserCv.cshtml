@@ -1,34 +1,24 @@
-﻿@model  JobFinder.ViewModels.OutputViewModels.CvOutputViewModel
+﻿@model JobFinder.ViewModels.OutputViewModels.CvOutputViewModel
 @{
     ViewData["Title"] = "UserCv";
 }
-
-    <div class="boxDiv">
-        <form method="get">
-            <input type="hidden" name="ok" value="1">
-            <input type="hidden" name="delphoto" value="0">
-            <input type="hidden" name="back" value="0">
-            <input type="hidden" name="backid" value="0">
-            <input type="hidden" name="q_key" value="">
-            <input type="hidden" name="csrf_token" value="8drD1DKkq6_WoGtaAgGqdJbsNkyiuqFUEZVHMaGvMX0"><table style="width:100%;padding-top:5px;">
-                <tbody>
-                <tr>
-                    <td class="rowTitle" style="padding-bottom:10px;">Name:</td>
-                    <td class="rowData" style="padding-bottom:10px;"><b>@Model.User.UserName</b>&nbsp;&nbsp;</td>
-                </tr>
-                   
-                    <tr>
-                        <td class="rowTitle" style="padding-bottom:10px;">Email:</td>
-                        <td class="rowData" style="padding-bottom:10px;"><b>@Model.Email</b>&nbsp;&nbsp;</td>
-                    </tr>
-        
-                    <tr>
-                        <td class="rowTitle" valign="top">Снимка:</td>
-                        <td class="rowData" valign="top"><img src="@Model.ImageUrl" border="0" style="vertical-align:top;margin-right:10px;"></td>
-                    </tr>
-                 
-                </tbody>
-            </table>
-        </form>
+<div class="hero-wrap js-fullheight" style="background-image: url('../images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+            <div class="col-md-12 ftco-animate text-center text-md-left mb-5" data-scrollax=" properties: { translateY: '70%' }">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-white"><b>Name:</b>  @Context.User.Identity.Name</p>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="text-white text"><b>Email:</b> <a href="mailto:@Model.Email">@Model.Email</a></p>
+                    </div>
+                    <div class="col-md-6">
+                        <img class="img-fluid img-thumbnail" src="@Model.ImageUrl" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
+</div>
