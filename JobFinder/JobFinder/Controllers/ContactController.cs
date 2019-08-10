@@ -18,7 +18,7 @@ namespace JobFinder.Controllers
             this.formEntryService = formEntryService;
         }
 
-        public IActionResult Contact()
+        public IActionResult Index()
         {
             return this.View();
         }

@@ -36,7 +36,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a asp-controller="Home" asp-action="Index" class="nav-link">Home</a></li>
                     <li class="nav-item"><a asp-controller="Home" asp-action="About" class="nav-link">About</a></li>
-                    <li class="nav-item"><a asp-controller="Contact" asp-action="Contact" class="nav-link">Contact</a></li> 
+                    <li class="nav-item"><a asp-controller="Contact" asp-action="Index" class="nav-link">Contact</a></li> 
                     
                     @if (User.IsInRole("Admin"))
                     {
@@ -68,7 +68,8 @@
             </div>
         </div>
     </nav>
-    <!-- END nav -->
+<!-- END nav -->
+
     <partial name="_CookieConsentPartial" />
     <main role="main">
         @RenderBody()
@@ -91,7 +92,7 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Employers</h2>
                         <ul class="list-unstyled">
-                            <li><a asp-controller="Contact" asp-action="Contact" class="py-2 d-block">How it works</a></li>
+                            <li><a asp-controller="Contact" asp-action="Index" class="py-2 d-block">How it works</a></li>
                             <li><a asp-area="Identity" asp-page="/Account/Register" class="py-2 d-block">Register</a></li>
                             <li><a asp-controller="Jobs" asp-action="PostJob" class="py-2 d-block">Post a Job</a></li>
                         </ul>
@@ -101,7 +102,7 @@
                     <div class="ftco-footer-widget mb-4 ml-md-4">
                         <h2 class="ftco-heading-2">Workers</h2>
                         <ul class="list-unstyled">
-                            <li><a asp-controller="Contact" asp-action="Contact" class="py-2 d-block">How it works</a></li>
+                            <li><a asp-controller="Contact" asp-action="Index" class="py-2 d-block">How it works</a></li>
                             <li><a asp-area="Identity" asp-page="/Account/Register" class="py-2 d-block">Register</a></li>
                             <li><a asp-controller="Home" asp-action="Index" class="py-2 d-block">Job Search</a></li>
                         </ul>
@@ -114,7 +115,7 @@
                             <ul>
                                 <li><span class="icon icon-map-marker"></span><span class="text">Sofia, Bulgaria. Iztok str 131 N=1</span></li>
                                 <li><a><span class="icon icon-phone"></span><span class="text">0886988456</span></a></li>
-                                <li><a asp-controller="Contact" asp-action="Contact"><span class="icon icon-envelope"></span><span class="text">Ask Question</span></a></li>
+                                <li><a asp-controller="Contact" asp-action="Index"><span class="icon icon-envelope"></span><span class="text">Ask Question</span></a></li>
                             </ul>
                         </div>
                     </div>
