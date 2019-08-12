@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JobFinder.Services.Contracts;
 using JobFinder.ViewModels.InputViewModels;
+using JobFinder.ViewModels.OutputViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,6 +41,25 @@ namespace JobFinder.Controllers
                 return this.Redirect("/");
             }
 
+            return this.View();
+        }
+
+        [Authorize()]
+        public IActionResult UpdateCv(string id)
+        {
+            var model = this._cvService.Update(id);
+            return this.View(model);
+        }
+
+        [Authorize()]
+        [HttpPost]
+        public IActionResult UpdateCv(UpdateCvViewModel model, string id)
+        {
+            if (ModelState.IsValid)
+            {
+                this._cvService.EditedModel(model, id);
+                return this.Redirect("../../Cv/CreateCv");
+            }
             return this.View();
         }
     }

@@ -9,14 +9,23 @@
             <div class="col-md-12 ftco-animate text-center text-md-left mb-5" data-scrollax=" properties: { translateY: '70%' }">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="text-white"><b>Name:</b>  @Context.User.Identity.Name</p>
+                        <p class="text-white"><b>Name: </b>@Context.User.Identity.Name</p>
                     </div>
                     <div class="col-md-12">
-                        <p class="text-white text"><b>Email:</b> <a href="mailto:@Model.Email">@Model.Email</a></p>
+                        <p class="text-white text"><b>Email: </b> <a href="mailto:@Model.Email">@Model.Email</a></p>
                     </div>
+                    
                     <div class="col-md-6">
                         <img class="img-fluid img-thumbnail" src="@Model.ImageUrl" />
                     </div>
+
+                    <div class="col-md-6">
+                        <p class="text-white"><font size="10" class="align-items-center">Description : @Model.Description</font></p>
+                    </div>
+                </div>
+               
+                <div class="ml-auto d-flex">
+                    <a asp-controller="Cv" asp-action="UpdateCv" asp-route-id="@Model.Id" class="btn btn-primary py-2 mr-1">Update Info</a>
                 </div>
             </div>
         </div>

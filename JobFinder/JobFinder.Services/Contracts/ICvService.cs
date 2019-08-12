@@ -12,5 +12,9 @@ namespace JobFinder.Services.Contracts
         void CreateCv(CvInputViewModel model);
         bool HasCv();
         CvOutputViewModel GetMyCv();
+
+        UpdateCvViewModel Update(string id);
+
+        void EditedModel(UpdateCvViewModel model, string id);
     }
 }

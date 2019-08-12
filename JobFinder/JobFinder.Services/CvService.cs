@@ -78,6 +78,7 @@ namespace JobFinder.Services
             
             var cvOutputModel = new CvOutputViewModel
             {
+                Id = cv.Id,
                 Description = cv.Description,
                 ImageUrl = cv.ImageUrl,
                 User = cv.User,
@@ -86,6 +87,29 @@ namespace JobFinder.Services
             };
 
             return cvOutputModel;
+        }
+
+        public UpdateCvViewModel Update(string id)
+        {
+            var currentCv = this.context.Cvs.Find(id);
+
+            var model = new UpdateCvViewModel()
+            {
+               Description = currentCv.Description,
+               ImageUrl = currentCv.ImageUrl
+            };
+
+            return model;
+        }
+
+        public void EditedModel(UpdateCvViewModel model, string id)
+        {
+            var currentCv = this.context.Cvs.Find(id);
+
+            currentCv.Description = model.Description;
+            currentCv.ImageUrl = model.ImageUrl;
+
+            this.context.SaveChanges();
         }
     }
 }
