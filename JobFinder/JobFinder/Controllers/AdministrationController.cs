@@ -17,6 +17,15 @@ namespace JobFinder.Controllers
 
         public AdministrationController(IAdminService adminService, IFormEntryService formEntryService)
         {
+            if (adminService == null)
+            {
+                throw new ArgumentNullException(nameof(adminService));
+            }
+
+            if (formEntryService == null)
+            {
+                throw new ArgumentNullException(nameof(formEntryService));
+            }
             _adminService = adminService;
             _formEntryService = formEntryService;
         }

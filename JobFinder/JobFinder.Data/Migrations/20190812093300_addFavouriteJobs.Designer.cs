@@ -4,14 +4,16 @@ using JobFinder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JobFinder.Data.Migrations
 {
     [DbContext(typeof(JobDbContext))]
-    partial class JobDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190812093300_addFavouriteJobs")]
+    partial class addFavouriteJobs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,19 +55,6 @@ namespace JobFinder.Data.Migrations
                     b.ToTable("Cvs");
                 });
 
-            modelBuilder.Entity("JobFinder.Models.FavoriteUserJobAds", b =>
-                {
-                    b.Property<string>("JobAddId");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("JobAddId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("FavoriteUserJobAds");
-                });
-
             modelBuilder.Entity("JobFinder.Models.FormEntry", b =>
                 {
                     b.Property<string>("Id")
@@ -105,9 +94,13 @@ namespace JobFinder.Data.Migrations
 
                     b.Property<decimal?>("Salary");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("JobAdds");
                 });
@@ -301,24 +294,15 @@ namespace JobFinder.Data.Migrations
                         .HasForeignKey("JobFinder.Models.Cv", "UserId");
                 });
 
-            modelBuilder.Entity("JobFinder.Models.FavoriteUserJobAds", b =>
-                {
-                    b.HasOne("JobFinder.Models.JobAdd", "JobAdd")
-                        .WithMany("FavoriteUserJob")
-                        .HasForeignKey("JobAddId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("JobFinder.Models.User", "User")
-                        .WithMany("FavoriteJobs")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("JobFinder.Models.JobAdd", b =>
                 {
                     b.HasOne("JobFinder.Models.Company", "Company")
                         .WithMany("JobAdds")
                         .HasForeignKey("CompanyId");
+
+                    b.HasOne("JobFinder.Models.User")
+                        .WithMany("FavouriteJobs")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("JobFinder.Models.UserJobAdds", b =>

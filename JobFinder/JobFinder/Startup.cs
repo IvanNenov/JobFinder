@@ -52,16 +52,18 @@ namespace JobFinder
             services.AddDbContext<JobDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<User>()
                 .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<JobDbContext>();
 
-            services.AddTransient<ICompanyService, CompanyService>();
-            services.AddTransient<IJobService, JobService>();
-            services.AddTransient<IFormEntryService, FormEntryService>();
-            services.AddTransient<ICvService, CvService>();
-            services.AddTransient<IAdminService, AdminService>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IJobService, JobService>();
+            services.AddScoped<IFormEntryService, FormEntryService>();
+            services.AddScoped<ICvService, CvService>();
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

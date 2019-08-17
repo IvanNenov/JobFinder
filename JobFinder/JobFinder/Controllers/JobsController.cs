@@ -8,16 +8,21 @@ using JobFinder.ViewModels.InputViewModels;
 using JobFinder.ViewModels.OutputViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 
 namespace JobFinder.Controllers
 {
     public class JobsController : Controller
     {
-        private readonly IJobService jobService;
+        private readonly IJobService _jobService;
 
         public JobsController(IJobService jobService)
         {
-            this.jobService = jobService;
+            if (jobService == null)
+            {
+                throw new ArgumentNullException(nameof(jobService));
+            }
+            this._jobService = jobService;
         }
 
         [Authorize()]
@@ -32,7 +37,7 @@ namespace JobFinder.Controllers
         {
             if (ModelState.IsValid)
             {
-                this.jobService.CreateJob(model, companyModel);
+                this._jobService.CreateJob(model, companyModel);
                 return Redirect("/");
             }
 

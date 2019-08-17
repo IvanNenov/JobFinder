@@ -14,8 +14,12 @@ namespace JobFinder.Controllers
     {
         private readonly ICvService _cvService;
 
-        public CvController(IJobService jobService, ICvService cvService)
+        public CvController(ICvService cvService)
         {
+            if (cvService == null)
+            {
+                throw new ArgumentNullException(nameof(cvService));
+            }
             this._cvService = cvService;
         }
 

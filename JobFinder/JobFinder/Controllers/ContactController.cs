@@ -15,6 +15,10 @@ namespace JobFinder.Controllers
 
         public ContactController(IFormEntryService formEntryService)
         {
+            if (formEntryService == null)
+            {
+                throw new ArgumentNullException(nameof(formEntryService));
+            }
             this.formEntryService = formEntryService;
         }
 

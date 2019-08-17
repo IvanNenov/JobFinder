@@ -17,6 +17,10 @@ namespace JobFinder.Controllers
 
         public HomeController(IJobService jobService)
         {
+            if (jobService == null)
+            {
+                throw new ArgumentNullException(nameof(jobService));
+            }
             this._jobService = jobService;
         }
 
