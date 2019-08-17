@@ -7,6 +7,7 @@ namespace JobFinder.ViewModels.OutputViewModels
 {
     public class AppliedJobOutputViewModel
     {
+        public string Id { get; set; }
         public string Name { get; set; }
 
         public JobType JobType { get; set; }

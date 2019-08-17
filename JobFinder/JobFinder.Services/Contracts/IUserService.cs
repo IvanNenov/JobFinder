@@ -13,5 +13,9 @@ namespace JobFinder.Services.Contracts
         IEnumerable<FavJobsDto> GetFavoriteJobs();
         IEnumerable<AppliedJobOutputViewModel> GetAppliedJobs();
         bool TryAddToApplied(string id);
+
+        void DeleteFromFavorite(string jobAddId);
+
+        void DeleteFromApplied(string jobAddId);
     }
 }

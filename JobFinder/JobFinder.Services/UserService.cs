@@ -62,22 +62,23 @@ namespace JobFinder.Services
                 .Where(x => x.FavoriteUserJob.Any(y => y.UserId == currentUserObject.Id))
                 .ToList();
 
-            var appliedJobOutputViewModel = new List<FavJobsDto>();
+            var favoriteJobsList = new List<FavJobsDto>();
 
             foreach (var jobAdd in jobAddsForCurrentUser)
             {
                 var favoriteJobs = new FavJobsDto();
 
+                favoriteJobs.Id = jobAdd.Id;
                 favoriteJobs.JobType = jobAdd.JobType.Value;
                 favoriteJobs.CompanyAddress = jobAdd.Company.Address;
                 favoriteJobs.CompanyName = jobAdd.Company.Name;
                 favoriteJobs.CreatedOn = jobAdd.CreatedOn;
                 favoriteJobs.Name = jobAdd.JobTitle;
 
-                appliedJobOutputViewModel.Add(favoriteJobs);
+                favoriteJobsList.Add(favoriteJobs);
             }
 
-            return appliedJobOutputViewModel;
+            return favoriteJobsList;
         }
 
         public bool TryAddToApplied(string id)
@@ -108,6 +109,28 @@ namespace JobFinder.Services
             return true;
         }
 
+        public void DeleteFromFavorite(string jobAddId)
+        {
+            if (jobAddId != null)
+            {
+                var currentJob = this._context.FavoriteUserJobAds.FirstOrDefault(x => x.JobAddId == jobAddId);
+
+                this._context.Remove(currentJob);
+                this._context.SaveChanges();
+            }
+        }
+
+        public void DeleteFromApplied(string jobAddId)
+        {
+            if (jobAddId != null)
+            {
+                var currentJob = this._context.UserJobAdds.FirstOrDefault(x => x.JobAddId == jobAddId);
+
+                this._context.Remove(currentJob);
+                this._context.SaveChanges();
+            }
+        }
+
         public IEnumerable<AppliedJobOutputViewModel> GetAppliedJobs()
         {
             var currentUser = this._accessor.HttpContext.User.Identity.Name;
@@ -126,6 +149,7 @@ namespace JobFinder.Services
             {
                 AppliedJobOutputViewModel vmAppliedJobOutputViewModel = new AppliedJobOutputViewModel();
 
+                vmAppliedJobOutputViewModel.Id = jobAdd.Id;
                 vmAppliedJobOutputViewModel.JobType = jobAdd.JobType.Value;
                 vmAppliedJobOutputViewModel.CompanyAddress = jobAdd.Company.Address;
                 vmAppliedJobOutputViewModel.CompanyName = jobAdd.Company.Name;
