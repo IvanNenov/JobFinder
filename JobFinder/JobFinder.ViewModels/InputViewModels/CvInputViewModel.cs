@@ -9,8 +9,10 @@ namespace JobFinder.ViewModels.InputViewModels
     public  class CvInputViewModel
     {
         [MaxLength(100)]
+        [Required]
         public string Description { get; set; }
-
+        
+        [Required]
         [MaxLength(50)]
         public string ImageUrl { get; set; }
         public string UserId { get; set; }
