@@ -96,7 +96,7 @@ namespace JobFinder.Controllers
         public IActionResult DeleteFormEntry(string id)
         {
             this._formEntryService.DeleteFormEntry(id);
-            return this.Redirect("/Administration/FormEntries");
+            return this.RedirectToActionPermanent(nameof(FormEntries));
         }
     }
 }
