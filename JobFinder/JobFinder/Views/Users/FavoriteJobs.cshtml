@@ -8,10 +8,19 @@
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
-            <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">My Favorite Jobs</span>
-                <h2 class="mb-4"><span>Favorite</span> Jobs</h2>
-            </div>
+            @if (Model.IsAny)
+            {
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <span class="subheading">Recently Added Favorite Jobs</span>
+                    <h2 class="mb-4"><span>Recent</span> Jobs</h2>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <h2 class="mb-4"><span>You dont't have any favorite jobs</span></h2>
+                </div>
+            }
         </div>
         <div class="row">
             @if (Model != null)

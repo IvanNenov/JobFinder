@@ -23,5 +23,7 @@ namespace JobFinder.ViewModels.OutputViewModels
         public string SearchTerm { get; set; }
 
         public JobType? JobType { get; set; }
+
+        public bool IsAny { get; set; }
     }
 }

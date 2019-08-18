@@ -43,7 +43,7 @@ namespace JobFinder.Controllers
         {
             if (ModelState.IsValid)
             {
-                this._adminService.EditedModel(model,id);
+                this._adminService.EditedModel(model, id);
                 return this.Redirect("/");
             }
 
@@ -54,7 +54,7 @@ namespace JobFinder.Controllers
         public IActionResult Delete(string id)
         {
             this._adminService.Delete(id);
-           return this.Redirect("/");
+            return this.Redirect("/");
         }
 
         [Authorize(Roles = "Admin")]
@@ -77,12 +77,18 @@ namespace JobFinder.Controllers
 
             var viewModel = new ListOfAllEntries()
             {
-               FormEntryOutput = entries,
-               CurrentPage = page,
-               PageSize = pageSize,
-               TotalPagesCount = totalPageCount
+                FormEntryOutput = entries,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPagesCount = totalPageCount,
+                IsAny = true
             };
+            if (entries.Count > 0)
+            {
+                return this.View(viewModel);
+            }
 
+            viewModel.IsAny = false;
             return this.View(viewModel);
         }
 

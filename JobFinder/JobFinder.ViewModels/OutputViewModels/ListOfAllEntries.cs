@@ -14,5 +14,7 @@ namespace JobFinder.ViewModels.OutputViewModels
 
         public int PageSize { get; set; }
 
+        public bool IsAny { get; set; }
+
     }
 }

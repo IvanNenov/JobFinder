@@ -56,7 +56,8 @@ namespace JobFinder.Controllers
                 AppliedJobs = allJobs,
                 CurrentPage = page,
                 PageSize = pageSize,
-                TotalPagesCount = totalPageCount
+                TotalPagesCount = totalPageCount,
+                IsAny = true
             };
 
             if (allJobs.Count > 0)
@@ -64,6 +65,7 @@ namespace JobFinder.Controllers
                 return this.View(viewModel);
             }
 
+            viewModel.IsAny = false;
             return View(viewModel);
         }
 
@@ -92,7 +94,8 @@ namespace JobFinder.Controllers
                 FavoriteJobsAds = allJobs,
                 CurrentPage = page,
                 PageSize = pageSize,
-                TotalPagesCount = totalPageCount
+                TotalPagesCount = totalPageCount,
+                IsAny = true
             };
 
             if (allJobs.Count > 0)
@@ -100,6 +103,7 @@ namespace JobFinder.Controllers
                 return this.View(viewModel);
             }
 
+            viewModel.IsAny = false;
             return View(viewModel);
         }
 

@@ -61,11 +61,18 @@ namespace JobFinder.Controllers
                 AllJobs = allJobs,
                 CurrentPage = page,
                 PageSize = pageSize,
-                TotalPagesCount = totalPageCount
+                TotalPagesCount = totalPageCount,
+                IsAny = true
             };
 
             if (this.User.IsInRole("Admin"))
             {
+                if (allJobs.Count > 0)
+                {
+                    return this.View("AdminIndex" ,viewModel);
+                }
+
+                viewModel.IsAny = false;
                 return this.View("AdminIndex", viewModel);
             }
 
@@ -74,6 +81,7 @@ namespace JobFinder.Controllers
                 return this.View(viewModel);
             }
 
+            viewModel.IsAny = false;
             return View(viewModel);
         }
 
