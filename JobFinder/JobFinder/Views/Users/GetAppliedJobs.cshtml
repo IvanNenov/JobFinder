@@ -1,4 +1,4 @@
-﻿@model  JobFinder.ViewModels.OutputViewModels.ListOfFavoriteJobs
+﻿@model JobFinder.ViewModels.OutputViewModels.ListOfFavoriteJobs
 @{
     ViewData["Title"] = "GetAppliedJobs";
 }
@@ -46,7 +46,10 @@
                             </div>
 
                             <div class="ml-auto d-flex">
-                                <a asp-controller="Users" asp-action="RemoveApplied" asp-route-id="@job.Id" class="btn btn-primary py-2 mr-1">Delete</a>
+                                <form asp-controller="Users" asp-action="RemoveApplied" method="post">
+                                    <input type="hidden" value="@job.Id" name="id" />
+                                    <button class="btn btn-primary py-2 mr-1" type="submit" value="">Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -77,5 +80,3 @@
         </div>
     </div>
 </section>
-
-

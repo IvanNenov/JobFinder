@@ -46,7 +46,10 @@
                             </div>
 
                             <div class="ml-auto d-flex">
-                                <a asp-controller="Users" asp-action="RemoveFavorite" asp-route-id="@job.Id" class="btn btn-primary py-2 mr-1">Delete</a>
+                                <form asp-controller="Users" asp-action="RemoveFavorite" method="post">
+                                    <input type="hidden" value="@job.Id" name="id" />
+                                    <button class="btn btn-primary py-2 mr-1" type="submit" value="">Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>

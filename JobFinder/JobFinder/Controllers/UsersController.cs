@@ -24,11 +24,12 @@ namespace JobFinder.Controllers
         }
 
         [Authorize()]
+        [HttpPost]
         public IActionResult ApplyJobs(string id, int? currentPage)
         {
             var isAdded = this._userService.TryAddToApplied(id);
 
-            return this.RedirectToActionPermanent(nameof(GetAppliedJobs));
+            return this.RedirectToAction(nameof(GetAppliedJobs));
         }
 
         [Authorize()]
@@ -111,7 +112,7 @@ namespace JobFinder.Controllers
         public IActionResult AddToFavoriteJobs(string id)
         {
             this._userService.TryAddToFavorite(id);
-            return this.RedirectToActionPermanent(nameof(FavoriteJobs));
+            return this.RedirectToAction(nameof(FavoriteJobs));
         }
 
         [Authorize()]
@@ -122,6 +123,7 @@ namespace JobFinder.Controllers
         }
 
         [Authorize()]
+        [HttpPost]
         public IActionResult RemoveApplied(string id)
         {
             this._userService.DeleteFromApplied(id);
@@ -129,4 +131,3 @@ namespace JobFinder.Controllers
         }
     }
 }
-
