@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobFinder.Models", "JobFind
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobFinder.Data", "JobFinder.Data\JobFinder.Data.csproj", "{FAA32730-C4AB-44D7-805B-32FF687AC89E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobFinder.Services", "JobFinder.Services\JobFinder.Services.csproj", "{5F5CAD47-8864-4F4D-964C-50AEEFA768F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobFinder.Services", "JobFinder.Services\JobFinder.Services.csproj", "{5F5CAD47-8864-4F4D-964C-50AEEFA768F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobFinder.ViewModels", "JobFinder.ViewModels\JobFinder.ViewModels.csproj", "{72D0171C-7AD8-4E8C-A687-8C5B5A016492}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobFinder.ViewModels", "JobFinder.ViewModels\JobFinder.ViewModels.csproj", "{72D0171C-7AD8-4E8C-A687-8C5B5A016492}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobFinder.Tests", "JobFinder.Tests\JobFinder.Tests.csproj", "{A9117BF8-65CA-4489-B4C3-21967B03864D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{72D0171C-7AD8-4E8C-A687-8C5B5A016492}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72D0171C-7AD8-4E8C-A687-8C5B5A016492}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72D0171C-7AD8-4E8C-A687-8C5B5A016492}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9117BF8-65CA-4489-B4C3-21967B03864D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9117BF8-65CA-4489-B4C3-21967B03864D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9117BF8-65CA-4489-B4C3-21967B03864D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9117BF8-65CA-4489-B4C3-21967B03864D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
