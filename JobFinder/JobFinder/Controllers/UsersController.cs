@@ -129,5 +129,14 @@ namespace JobFinder.Controllers
             this._userService.DeleteFromApplied(id);
             return this.RedirectToActionPermanent(nameof(GetAppliedJobs));
         }
+
+        [Authorize()]
+        public IActionResult ApplyAndRemoveFromFavorite(string id)
+        {
+            this._userService.TryAddToApplied(id);
+            this._userService.DeleteFromFavorite(id);
+            return this.RedirectToActionPermanent(nameof(GetAppliedJobs));
+
+        }
     }
 }
