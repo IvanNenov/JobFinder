@@ -80,6 +80,7 @@ namespace JobFinder.Services
                 var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(searchTerm) && x.JobType == jobTypeEnum)
                     .Select(x => new AllJobDto
                     {
+                        Id = x.Id,
                         Name = x.JobTitle,
                         CompanyAddress = x.Company.Address,
                         CompanyName = x.Company.Name,
@@ -94,6 +95,7 @@ namespace JobFinder.Services
                 var listOfJobs = this.context.JobAdds.Where(x => x.JobTitle.Contains(searchTerm))
                     .Select(x => new AllJobDto
                     {
+                        Id = x.Id,
                         Name = x.JobTitle,
                         CompanyAddress = x.Company.Address,
                         CompanyName = x.Company.Name,
@@ -108,6 +110,7 @@ namespace JobFinder.Services
                 var listOfJobs = this.context.JobAdds.Where(x => x.JobType == jobTypeEnum)
                     .Select(x => new AllJobDto
                     {
+                        Id = x.Id,
                         Name = x.JobTitle,
                         CompanyAddress = x.Company.Address,
                         CompanyName = x.Company.Name,
@@ -121,6 +124,7 @@ namespace JobFinder.Services
             {
                 var listOfJobs = this.context.JobAdds.Select(x => new AllJobDto
                 {
+                    Id = x.Id,
                     Name = x.JobTitle,
                     CompanyAddress = x.Company.Address,
                     CompanyName = x.Company.Name,

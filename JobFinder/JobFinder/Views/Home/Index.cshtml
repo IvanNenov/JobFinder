@@ -168,7 +168,7 @@
                             <div class="ml-auto d-flex">
                                 <form asp-controller="Users" asp-action="ApplyJobs" method="post">
                                     <input type="hidden" value="@job.Id" name="id" />
-                                    <button class="btn btn-primary py-2 mr-1" type="submit" value="">Apply Job</button>
+                                    <button asp-controller="Users" asp-action="ApplyJobs" asp-route-id="@job.Id" class="btn btn-primary py-2 mr-1" type="submit" value="@job.Id">Apply Job</button>
                                 </form>
                                 <a class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon" asp-controller="Users" asp-action="AddToFavoriteJobs" asp-route-id="@job.Id">
                                     <span class="icon-heart" background-imgage="white"></span>
