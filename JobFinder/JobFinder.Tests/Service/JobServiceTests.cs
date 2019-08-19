@@ -20,7 +20,6 @@ namespace JobFinder.Tests.Service
         private readonly ICompanyService _companyService;
         private readonly JobDbContext _context;
 
-
         public JobServiceTests()
         {
             var options = new DbContextOptionsBuilder<JobDbContext>()
@@ -169,6 +168,7 @@ namespace JobFinder.Tests.Service
             });
             context.SaveChanges();
         }
+
         private IEnumerable<JobAdd> GetJobsTestData()
         {
             var listOfJobs =  new List<AllJobDto>
