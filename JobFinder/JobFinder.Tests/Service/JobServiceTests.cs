@@ -81,7 +81,7 @@ namespace JobFinder.Tests.Service
         }
 
         [Fact]
-        public void TestSearchForJob_ShouldReturnCorrectJob()
+        public void TestSearchForJob_ShouldReturnCorrectJobIfParameterIsOnlySearchTerm()
         {
             var job = new JobAdd()
             {
@@ -105,6 +105,60 @@ namespace JobFinder.Tests.Service
             };
             Assert.Equal(mappedJob.JobTitle,job.JobTitle);
         }
+
+        [Fact]
+        public void TestSearchForJob_ShouldReturnCorrectJobIfParameterIsOnlyJobType()
+        {
+            var job = new JobAdd()
+            {
+                JobTitle = "js",
+                Description = "js",
+                JobType = JobType.WorkOnShifts
+            };
+
+            this._context.JobAdds.Add(job);
+            this._context.SaveChanges();
+
+            string jobType = JobType.WorkOnShifts.ToString();
+
+            var allJobs = this._jobService.SearchForJob(null, jobType).ToList();
+            var currentJob = allJobs.FirstOrDefault(x => x.JobType == JobType.WorkOnShifts);
+
+            var mappedJob = new JobAdd()
+            {
+                JobTitle = currentJob.Name,
+                JobType = currentJob.JobType,
+            };
+            Assert.Equal(mappedJob.JobTitle, job.JobTitle);
+        }
+
+        [Fact]
+        public void TestSearchForJob_ShouldReturnCorrectJobIfWeHaveDwoParameters()
+        {
+            var job = new JobAdd()
+            {
+                JobTitle = "php",
+                Description = "js",
+                JobType = JobType.PartTime
+            };
+
+            this._context.JobAdds.Add(job);
+            this._context.SaveChanges();
+
+            string jobType = JobType.PartTime.ToString();
+            string searchTerm = "php";
+
+            var allJobs = this._jobService.SearchForJob(searchTerm, jobType).ToList();
+            var currentJob = allJobs.FirstOrDefault(x => x.JobType == JobType.PartTime);
+
+            var mappedJob = new JobAdd()
+            {
+                JobTitle = currentJob.Name,
+                JobType = currentJob.JobType,
+            };
+            Assert.Equal(mappedJob.JobTitle, job.JobTitle);
+        }
+
         private void SeedTestData(JobDbContext context)
         {
             context.JobAdds.AddRange(GetJobsTestData());
