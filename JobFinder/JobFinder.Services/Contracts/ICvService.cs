@@ -10,7 +10,9 @@ namespace JobFinder.Services.Contracts
     public interface ICvService
     {
         void CreateCv(CvInputViewModel model);
+
         bool HasCv();
+
         CvOutputViewModel GetMyCv();
 
         UpdateCvViewModel Update(string id);
