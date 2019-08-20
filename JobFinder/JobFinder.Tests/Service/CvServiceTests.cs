@@ -15,14 +15,6 @@ namespace JobFinder.Tests.Service
 {
     public class CvServiceTests
     {
-        //bool HasCv();
-
-        //CvOutputViewModel GetMyCv();
-
-        //UpdateCvViewModel Update(string id);
-
-        //void EditedModel(UpdateCvViewModel model, string id);
-
         private readonly ICvService _cvService;
         private readonly JobDbContext _context;
         private readonly IHttpContextAccessor _accessor;
@@ -38,34 +30,77 @@ namespace JobFinder.Tests.Service
         }
 
 
-        //[Fact]
-        //public void TestCreateCv_ShouldCreateCv()
-        //{
-        //    var user = new User
-        //    {
-        //        UserName = "ivan",
-        //        Email = "ivan@abv.bg",
-        //    };
+        [Fact]
+        public void TestUpdate_ShouldReturnCorrectCv()
+        {
+            var cvId = Guid.NewGuid().ToString();
 
-        //    this._context.Users.Add(user);
-        //    this._context.SaveChanges();
+            var cv = new Cv()
+            {
+                Description = "a",
+                Id = cvId,
+                ImageUrl = "aa"
+            };
 
-        //    var cvModel = new CvInputViewModel()
-        //    {
-        //        Description = "az",
-        //        ImageUrl = "wwww",
-        //        User = user,
-        //        UserId = user.Id
-        //    };
+            this._context.Cvs.Add(cv);
+            this._context.SaveChanges();
 
-        //    this._cvService.CreateCv(cvModel);
-        //    this._context.SaveChanges();
+            var expected = this._context.Cvs.Find(cvId);
 
-        //    var actualCv = this._context.Cvs.FirstOrDefault();
+            Assert.Equal(expected, cv);
 
-        //    Assert.Equal(cvModel.Description, actualCv.Description);
-        //    Assert.Equal(cvModel.ImageUrl, actualCv.ImageUrl);
+            var model = this._cvService.Update(cvId);
 
-        //}
+            var mappedModel = new Cv()
+            {
+                ImageUrl = model.ImageUrl,
+                Description = model.Description
+            };
+
+            this._context.SaveChanges();
+
+            Assert.Equal(mappedModel.Description, cv.Description);
+            Assert.Equal(mappedModel.ImageUrl, cv.ImageUrl);
+        }
+
+        [Fact]
+        public void TestEditModel_ShouldEditCorrectCv()
+        {
+            var cvId = Guid.NewGuid().ToString();
+
+            var cv = new Cv()
+            {
+                Description = "a",
+                Id = cvId,
+                ImageUrl = "aa"
+            };
+
+            this._context.Cvs.Add(cv);
+            this._context.SaveChanges();
+
+            var expected = this._context.Cvs.Find(cvId);
+
+            Assert.Equal(expected, cv);
+
+            var update = new UpdateCvViewModel()
+            {
+                Description = "da",
+                ImageUrl = "a",
+            };
+
+            this._cvService.EditedModel(update, cvId);
+            this._context.SaveChanges();
+
+            var mappedModel = new Cv()
+            {
+                Description = update.Description,
+                ImageUrl = update.ImageUrl,
+            };
+
+            var editedCv = this._context.Cvs.Find(cvId);
+
+            Assert.Equal(mappedModel.Description, editedCv.Description);
+            Assert.Equal(mappedModel.ImageUrl, editedCv.ImageUrl);
+        }
     }
 }
