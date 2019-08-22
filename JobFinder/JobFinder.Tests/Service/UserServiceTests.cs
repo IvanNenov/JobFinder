@@ -14,8 +14,6 @@ namespace JobFinder.Tests.Service
 {
     public class UserServiceTests
     {
-        //void DeleteFromFavorite(string jobAddId);
-
         private readonly IUserService _userService;
         private readonly JobDbContext _context;
         private readonly IHttpContextAccessor _accessor;

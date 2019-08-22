@@ -70,7 +70,7 @@ namespace JobFinder.Services
 
                 favoriteJobs.Id = jobAdd.Id;
                 favoriteJobs.JobType = jobAdd.JobType.Value;
-                favoriteJobs.CompanyAddress = jobAdd.Company.Address;
+                favoriteJobs.CompanyAddress = jobAdd.Location;
                 favoriteJobs.CompanyName = jobAdd.Company.Name;
                 favoriteJobs.CreatedOn = jobAdd.CreatedOn;
                 favoriteJobs.Name = jobAdd.JobTitle;
